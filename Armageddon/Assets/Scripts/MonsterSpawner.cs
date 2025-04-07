@@ -9,7 +9,7 @@ public class MonsterSpawner : MonoBehaviour
     public int monsterCount = 5;
     public float spawnInterval = 1f;
 
-    private Vector2 spawnPosition = new Vector2(-2.24f, -4.43f);
+    private Vector2 spawnPosition = new Vector2(-2.24f, -1.5f);
 
     private void Start()
     {
