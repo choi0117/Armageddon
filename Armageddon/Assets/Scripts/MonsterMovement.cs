@@ -27,13 +27,6 @@ public class MonsterMovement : MonoBehaviour
         {
             // 웨이포인트에 도달했으므로 인덱스를 증가시킴
             currentWaypointIndex++;
-
-            // 모든 웨이포인트를 다 돌았으면 몬스터를 파괴
-            if (currentWaypointIndex >= waypoints.Count)
-            {
-                // 몬스터를 파괴
-                Destroy(gameObject);
-            }
         }
     }
 }
