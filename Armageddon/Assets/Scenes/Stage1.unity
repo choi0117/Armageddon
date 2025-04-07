@@ -3479,7 +3479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05add6b3a9c1d5f469baa610d6780eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterPrefab: {fileID: 1214556112424336539, guid: a13ebf050a76aa243b175c56cfb1d8eb,
+  monsterPrefab: {fileID: 7543672326753298252, guid: a13ebf050a76aa243b175c56cfb1d8eb,
     type: 3}
   pathWaypoints:
   - {fileID: 781392953}
@@ -3490,7 +3490,7 @@ MonoBehaviour:
   - {fileID: 1216532576}
   - {fileID: 1326144038}
   monsterCount: 5
-  spawnInterval: 1
+  spawnInterval: 2
   startDelay: 10
 --- !u!212 &2142745756
 SpriteRenderer:
