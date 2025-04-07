@@ -11,6 +11,8 @@ public class MonsterSpawner : MonoBehaviour
 
     private Vector2 spawnPosition = new Vector2(-2.24f, -1.5f);
 
+    public float startDelay = 10f;
+
     private void Start()
     {
         StartCoroutine(SpawnMonsters());
@@ -18,6 +20,8 @@ public class MonsterSpawner : MonoBehaviour
 
     IEnumerator SpawnMonsters()
     {
+        yield return new WaitForSeconds(startDelay);
+
         for (int i = 0; i < monsterCount; i++)
         {
             GameObject monster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);

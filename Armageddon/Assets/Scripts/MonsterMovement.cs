@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterMovement : MonoBehaviour
 {
     public List<Transform> waypoints;
-    public float speed = 2f;
+    public float speed = 1f;
     private int currentWaypointIndex = 0;
 
     void Update()
