@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 514758977043959282}
   - component: {fileID: -2299842204436209617}
   - component: {fileID: -2464115331470128045}
+  - component: {fileID: -2745747919689890179}
   m_Layer: 0
   m_Name: monster
   m_TagString: Monster
@@ -195,3 +196,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2745747919689890179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543672326753298252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4576356a88bb984f8cffe1780a39f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 20

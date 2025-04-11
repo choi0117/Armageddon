@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6393462971592061006}
   - component: {fileID: 2995724945316011579}
+  - component: {fileID: 2366262302325821975}
   m_Layer: 0
   m_Name: UnitTest
   m_TagString: Untagged
@@ -84,3 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2366262302325821975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301427334398572417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735eede8a910c7a42aa286f4af4b3ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1.5
+  attackInterval: 1
+  damage: 10
