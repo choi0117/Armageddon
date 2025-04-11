@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95bf5cef6e4fd24aa28e457cc6b3a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: 100
+  coin: 5
   coinText: {fileID: 1272881946}
 --- !u!114 &180507805
 MonoBehaviour:
@@ -6358,7 +6358,7 @@ MonoBehaviour:
   - {fileID: 1326144038}
   monsterCount: 5
   spawnInterval: 2
-  startDelay: 0
+  startDelay: 10
   monsterCountText: {fileID: 1175276210}
 --- !u!212 &2142745756
 SpriteRenderer:
