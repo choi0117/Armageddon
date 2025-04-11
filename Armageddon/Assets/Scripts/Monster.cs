@@ -6,9 +6,12 @@ using UnityEngine.UI;
 // 몬스터 스크립트
 public class Monster : MonoBehaviour
 {
+    // 몬스터의 체력
     public int maxHp = 100;
+    // 몬스터의 현재 체력
     public int currentHp;
 
+    // 체력바 프리팹
     public GameObject healthBarPrefab;
     private Image fillImage;
     private GameObject healthBarInstance;
@@ -39,6 +42,7 @@ public class Monster : MonoBehaviour
 
     void UpdateHealthBar()
     {
+        // 체력바 업데이트
         if (fillImage != null)
         {
             fillImage.fillAmount = (float)currentHp / maxHp;
@@ -47,24 +51,34 @@ public class Monster : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        // 몬스터가 피해를 입었을 때 호출되는 함수
         currentHp -= damage;
         UpdateHealthBar();
 
         if (currentHp <= 0)
         {
-            Die(); // <- 여기서 Die() 호출되도록 수정!
+            Die();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 몬스터가 다른 오브젝트와 충돌했을 때 호출되는 함수
+        if (other.CompareTag("Endpoint"))
+        {
+            Die();
         }
     }
 
     void Die()
     {
-        // 체력바 먼저 제거
+        // 체력바 제거
         if (healthBarInstance != null)
         {
             Destroy(healthBarInstance);
         }
 
-        // 몬스터 오브젝트 제거
+        // 몬스터 제거
         Destroy(gameObject);
     }
 }
