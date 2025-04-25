@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 유닛이 몬스터를 공격하는 스크립트
 public class Unit : MonoBehaviour
@@ -16,6 +17,28 @@ public class Unit : MonoBehaviour
     private float attackTimer = 0f;
 
     private Monster currentTarget;
+
+    public int maxHp = 100;
+    private int currentHp;
+
+    // 체력바 관련
+    public GameObject healthBarPrefab;
+    private Image fillImage;
+    private GameObject healthBarInstance;
+
+    void Start()
+    {
+        currentHp = maxHp;
+
+        if (healthBarPrefab != null)
+        {
+            // 체력바 생성 및 Canvas에 붙이기
+            healthBarInstance = Instantiate(healthBarPrefab, transform.position + Vector3.up * 1f, Quaternion.identity);
+            healthBarInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
+
+            fillImage = healthBarInstance.transform.Find("Fill").GetComponent<Image>();
+        }
+    }
 
     void Update()
     {
@@ -43,6 +66,11 @@ public class Unit : MonoBehaviour
                 currentTarget.TakeDamage(damage);
                 attackTimer = 0f;
             }
+        }
+
+        if (healthBarInstance != null)
+        {
+            healthBarInstance.transform.position = Camera.main.WorldToScreenPoint(transform.position + Vector3.up * 0.2f);
         }
     }
 
@@ -72,5 +100,36 @@ public class Unit : MonoBehaviour
         }
         // 몬스터가 없으면 null로 설정
         currentTarget = nearest;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+        UpdateHealthBar();
+
+        if (currentHp <= 0)
+        {
+            Die();
+        }
+    }
+
+    void UpdateHealthBar()
+    {
+        if (fillImage != null)
+        {
+            fillImage.fillAmount = (float)currentHp / maxHp;
+        }
+    }
+
+    void Die()
+    {
+        // 체력바 삭제
+        if (healthBarInstance != null)
+        {
+            Destroy(healthBarInstance);
+        }
+
+        // 유닛 오브젝트 삭제
+        Destroy(gameObject);
     }
 }

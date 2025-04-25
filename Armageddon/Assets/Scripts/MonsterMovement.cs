@@ -5,58 +5,102 @@ using UnityEngine;
 // 몬스트 이동을 관리하는 스크립트
 public class MonsterMovement : MonoBehaviour
 {
-    // 웨이포인트 리스트
     public List<Transform> waypoints;
-    // 몬스터 이동 속도
     public float speed = 0.6f;
-    // 현재 웨이포인트 인덱스
     private int currentWaypointIndex = 0;
 
-    // 애니메이션과 스프라이트 렌더러
     private Animator animator;
-    // 스프라이트 렌더러
     private SpriteRenderer spriteRenderer;
+
+    // 공격 관련
+    public float attackRange = 0.5f;
+    public float attackCooldown = 1.5f;
+    public int attackDamage = 10;
+    private float attackTimer = 0f;
+
+    private GameObject targetUnit;
 
     void Start()
     {
-        // 웨이포인트가 없으면 종료    
         animator = GetComponent<Animator>();
-        // 스프라이트 렌더러가 없으면 종료
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        // 몬스터 이동
+        attackTimer += Time.deltaTime;
+
+        // 근처 유닛 탐지
+        if (DetectUnit())
+        {
+            // 유닛 공격
+            if (attackTimer >= attackCooldown)
+            {
+                Attack();
+                attackTimer = 0f;
+            }
+
+            // 공격 중이므로 이동하지 않음
+            animator.SetFloat("MoveX", 0);
+            animator.SetFloat("MoveY", 0);
+            return;
+        }
+
+        // 유닛이 없을 때만 이동
+        Move();
+    }
+
+    void Move()
+    {
         if (waypoints.Count == 0 || currentWaypointIndex >= waypoints.Count) return;
 
-        // 현재 웨이포인트 위치
         Transform target = waypoints[currentWaypointIndex];
-        // 몬스터가 웨이포인트로 이동
         Vector3 direction = target.position - transform.position;
-        // 이동 방향 벡터를 정규화
         transform.position += direction.normalized * speed * Time.deltaTime;
 
-        // 애니메이션 파라미터 설정
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.y);
 
-        // 오른쪽으로 이동 중이면 좌우 반전 ON
         if (direction.x < 0.1f)
-        {
             spriteRenderer.flipX = true;
-        }
-        // 왼쪽으로 이동 중이면 좌우 반전 OFF
         else if (direction.x > -0.1f)
-        {
             spriteRenderer.flipX = false;
+
+        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+            currentWaypointIndex++;
+    }
+
+    bool DetectUnit()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Unit"))
+            {
+                targetUnit = hit.gameObject;
+                return true;
+            }
         }
 
-        // 웨이포인트 도착 시 다음으로
-        if (Vector3.Distance(transform.position, target.position) < 0.1f)
+        targetUnit = null;
+        return false;
+    }
+
+    void Attack()
+    {
+        if (targetUnit != null)
         {
-            // 웨이포인트에 도착했을 때 애니메이션 파라미터 설정
-            currentWaypointIndex++;
+            Unit unit = targetUnit.GetComponent<Unit>();
+            if (unit != null)
+            {
+                unit.TakeDamage(attackDamage);
+            }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
