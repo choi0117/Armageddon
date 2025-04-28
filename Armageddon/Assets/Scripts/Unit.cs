@@ -104,6 +104,7 @@ public class Unit : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        // 유닛이 데미지를 받음
         currentHp -= damage;
         UpdateHealthBar();
 
@@ -115,6 +116,7 @@ public class Unit : MonoBehaviour
 
     void UpdateHealthBar()
     {
+        // 체력바의 fillAmount를 업데이트
         if (fillImage != null)
         {
             fillImage.fillAmount = (float)currentHp / maxHp;
