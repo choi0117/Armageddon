@@ -5,9 +5,10 @@ using UnityEngine;
 // 유닛 배치 관리 스크립트
 public class UnitPlacementManager : MonoBehaviour
 {
+    // 유닛 배치 관리하는 싱글톤 클래스
     public static UnitPlacementManager Instance;
 
-    // 유닛 카드 프리팹
+    // 선택된 카드
     [HideInInspector]
     public UnitCard selectedCard;
 
@@ -20,26 +21,41 @@ public class UnitPlacementManager : MonoBehaviour
         }
         else
         {
-            // 이미 인스턴스가 존재하는 경우 현재 오브젝트 삭제
             Destroy(gameObject);
         }
     }
 
-    // 유닛 프리팹 가져오기
     public GameObject GetSelectedUnitPrefab()
     {
+        // 선택된 카드의 유닛 프리팹을 반환
         return selectedCard != null ? selectedCard.unitPrefab : null;
     }
 
-    // 유닛 코스트 가져오기
     public int GetSelectedUnitCost()
     {
+        // 선택된 카드의 코스트를 반환
         return selectedCard != null ? selectedCard.cost : 0;
     }
 
-    // 카드 선택 메서드
     public void SelectCard(UnitCard card)
     {
+        // 카드 선택 시 호출되는 함수
         selectedCard = card;
+    }
+
+    // 실제 유닛 배치 함수 (예시)
+    public void PlaceUnit(Vector3 position)
+    {
+        // 유닛 배치 시 호출되는 함수
+        if (selectedCard == null || !UnitManager.Instance.CanPlaceUnit())
+        {
+            Debug.Log("유닛 배치 불가: 선택된 카드가 없거나 유닛 제한 초과");
+            return;
+        }
+
+        // 유닛 배치 가능 여부 확인
+        Instantiate(selectedCard.unitPrefab, position, Quaternion.identity);
+        // 유닛 배치 후 카드 선택 해제
+        UnitManager.Instance.AddUnit();
     }
 }

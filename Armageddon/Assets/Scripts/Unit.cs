@@ -133,5 +133,10 @@ public class Unit : MonoBehaviour
 
         // 유닛 오브젝트 삭제
         Destroy(gameObject);
+
+        // 유닛 수 감소
+        UnitManager.Instance.RemoveUnit();
+        // 유닛 카드 선택 해제
+        Destroy(gameObject);
     }
 }
