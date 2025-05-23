@@ -10,6 +10,12 @@ public class LifeManager : MonoBehaviour
     // 싱글톤 패턴을 사용하여 LifeManager 인스턴스를 관리
     public static LifeManager Instance;
 
+    // 게임 오버 패널
+    public GameObject GameoverPanel;
+
+    // 게임 오버 상태
+    private bool isGameover = false;
+
     // 현재 생명 수
     public int life = 10;
     public TextMeshProUGUI lifeText;
@@ -50,9 +56,11 @@ public class LifeManager : MonoBehaviour
 
     void GameOver()
     {
-        // 게임 오버 처리
-        Debug.Log("Game Over!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (isGameover) return;
+
+        isGameover = true;
+        GameoverPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }
 
