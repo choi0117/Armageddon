@@ -10,6 +10,8 @@ public class Monster : MonoBehaviour
     public int maxHp = 100;
     // 몬스터의 현재 체력
     public int currentHp;
+    // 몬스터 지급 코인 수량
+    public int coinReward = 2;
 
     // 체력바 프리팹
     public GameObject healthBarPrefab;
@@ -72,6 +74,9 @@ public class Monster : MonoBehaviour
 
     void Die()
     {
+        // 몬스터가 죽었을 때 코인 지급
+        CoinManager.Instance.AddCoin(coinReward);
+
         // 체력바 제거
         if (healthBarInstance != null)
         {
