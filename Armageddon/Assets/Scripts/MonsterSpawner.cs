@@ -13,7 +13,8 @@ public class MonsterSpawner : MonoBehaviour
     public float spawnInterval = 2f;
     private int spawnedCount = 0;
 
-    private Vector2 spawnPosition = new Vector2(-2.24f, -1.5f);
+    // 몬스터가 생성될 위치
+    public Transform spawnPosition;
     public float startDelay = 10f;
 
     // UI에 현재 생성된 수 / 총 수를 보여줄 텍스트
@@ -31,7 +32,7 @@ public class MonsterSpawner : MonoBehaviour
 
         for (int i = 0; i < monsterCount; i++)
         {
-            GameObject monster = Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
+            GameObject monster = Instantiate(monsterPrefab, spawnPosition.position, Quaternion.identity);
             MonsterMovement movement = monster.GetComponent<MonsterMovement>();
             movement.waypoints = pathWaypoints;
 

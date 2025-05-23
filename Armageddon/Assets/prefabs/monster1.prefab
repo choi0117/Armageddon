@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2464115331470128045}
   - component: {fileID: -2745747919689890179}
   m_Layer: 0
-  m_Name: monster2
+  m_Name: monster1
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
-  m_Sprite: {fileID: 21300000, guid: ef405964c22adf74bb96c426dbb8002f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b4b61f13edd1ca4a918d42d0e4faed5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,10 +102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
-  speed: 3
+  speed: 1
   attackRange: 0.5
   attackCooldown: 1
-  attackDamage: 10
+  attackDamage: 5
 --- !u!61 &514758977043959282
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,18 +138,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022486478, y: -0.00702703}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5882353, y: 0.5882353}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31448644, y: 0.31729722}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!50 &-2299842204436209617
 Rigidbody2D:
@@ -188,7 +188,7 @@ Animator:
   m_GameObject: {fileID: 7543672326753298252}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f266e73c10400a44eb81c23faef23e87, type: 2}
+  m_Controller: {fileID: 9100000, guid: 35be9800a0fa3c041ae5fb162741e2e0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4576356a88bb984f8cffe1780a39f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 70
+  maxHp: 30
   currentHp: 0
-  coinReward: 3
+  coinReward: 2
   healthBarPrefab: {fileID: 7765765693444186668, guid: 5c90db747e4046f4a8a627dfe8baffc7,
     type: 3}

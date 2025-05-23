@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8697581320718324869}
   - component: {fileID: 2696722127923201582}
   m_Layer: 0
-  m_Name: UnitTest
+  m_Name: GaiusJulliusCaesar
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
