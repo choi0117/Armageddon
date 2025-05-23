@@ -46,6 +46,7 @@ public class UnitPlacementManager : MonoBehaviour
     // 실제 유닛 배치 함수 (예시)
     public void PlaceUnit(Vector3 position)
     {
+        Debug.Log("유닛 배치 시도: ");
         // 유닛 배치 시 호출되는 함수
         if (selectedCard == null || !UnitManager.Instance.CanPlaceUnit())
         {

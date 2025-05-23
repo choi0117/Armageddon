@@ -52,6 +52,6 @@ public class UnitManager : MonoBehaviour
     void UpdateUI()
     {
         // UI 업데이트
-        unitCountText.text = $"Uniy: {maxUnits - currentUnits}/{maxUnits}";
+        unitCountText.text = $"Uniy: {currentUnits}/{maxUnits}";
     }
 }
