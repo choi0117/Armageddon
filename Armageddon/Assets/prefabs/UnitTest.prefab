@@ -102,7 +102,7 @@ MonoBehaviour:
   attackRange: 1.5
   attackInterval: 1
   damage: 10
-  maxHp: 100
+  maxHp: 20
   healthBarPrefab: {fileID: 7765765693444186668, guid: 57735ecafc9b0e74b888f48a51fb0c98,
     type: 3}
 --- !u!61 &8697581320718324869

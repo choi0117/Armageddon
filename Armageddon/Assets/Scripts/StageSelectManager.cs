@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StageSelectManager : MonoBehaviour
 {
     public GameObject stageSelectPanel;
     public string selectedStageName = "";
+
+    public TextMeshProUGUI selectedStageTextTMP;
 
     // STAGE 버튼 클릭 시 호출
     public void ToggleStageSelectPanel()
@@ -20,6 +23,11 @@ public class StageSelectManager : MonoBehaviour
     {
         selectedStageName = stageName;
         Debug.Log("Selected Stage: " + selectedStageName);
+
+        if (selectedStageTextTMP != null)
+        {
+            selectedStageTextTMP.text = $"{selectedStageName}";
+        }
     }
 
     // PLAY 버튼 클릭 시 호출
