@@ -41,6 +41,6 @@ public class SettingsUI : MonoBehaviour
     void ExitToLobby()
     {
         // 로비씬으로 이동
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("LobbySecene");
     }
 }
