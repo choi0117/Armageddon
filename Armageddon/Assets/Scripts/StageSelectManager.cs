@@ -3,34 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class StageSelectManager : MonoBehaviour
 {
+    // 스테이지 선택 패널
     public GameObject stageSelectPanel;
     public string selectedStageName = "";
 
+    // 스테이지 선택 텍스트
     public TextMeshProUGUI selectedStageTextTMP;
+    public Image stagePreviewImage;
 
-    // STAGE 버튼 클릭 시 호출
     public void ToggleStageSelectPanel()
     {
+        // 스테이지 선택 패널 열기/닫기
         bool isActive = stageSelectPanel.activeSelf;
         stageSelectPanel.SetActive(!isActive);
     }
 
-    // 스테이지 선택 버튼 클릭 시 호출
     public void SelectStage(string stageName)
     {
+        // 스테이지 선택
         selectedStageName = stageName;
         Debug.Log("Selected Stage: " + selectedStageName);
 
+        // 스테이지 선택 텍스트 업데이트
         if (selectedStageTextTMP != null)
         {
             selectedStageTextTMP.text = $"{selectedStageName}";
         }
+
+        // 스테이지 미리보기 이미지 로드
+        if (stagePreviewImage != null)
+        {
+            // 스테이지 미리보기 이미지 로드
+            Sprite previewSprite = Resources.Load<Sprite>("StagePreviews/" + stageName);
+            if (previewSprite != null)
+            {
+                stagePreviewImage.sprite = previewSprite;
+                stagePreviewImage.enabled = true;
+            }
+            else
+            {
+                stagePreviewImage.sprite = null;
+                stagePreviewImage.enabled = false;
+            }
+        }
     }
 
-    // PLAY 버튼 클릭 시 호출
     public void PlaySelectedStage()
     {
         if (!string.IsNullOrEmpty(selectedStageName))
